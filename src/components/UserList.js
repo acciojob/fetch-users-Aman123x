@@ -36,16 +36,19 @@ const UserList=()=>{
                 </thead>
                 <tbody>
                     {
-                        user.length>0? (
+                        user.length>0 ? (
                             user.map((user)=>{
-                                <tr>
+                                <tr key={user.id}>
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
                                     <td>{user.email_name}</td>
                                     <td><img src={user.avatar} alt={user.first_name+" "+user.last_name}/></td>
                                 </tr>
                             })
-                        ):(<p>No data found to display.</p>)
+                        ):(<tr> 
+                            <td>No data found to display.</td>
+                        </tr>
+                            )
                     }
                 </tbody>
             </table>
