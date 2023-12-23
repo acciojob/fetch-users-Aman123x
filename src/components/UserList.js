@@ -1,30 +1,19 @@
 import React,{useState,useEffect} from "react";
-import axios from "axios"
+import axios from "axios";
 
 const UserList=()=>{
-    const [user,setUser]=useState([]);
+    const [users,setUsers]=useState([]);
 
-    const getlist= ()=>{
+    const getUsers= ()=>{
         axios.get("https://reqres.in/api/users")
-        .then((response)=>setUser(response.data.data))
+        .then((response)=>setUsers(response.data.data))
         .catch((err)=>console.log(err))
     }
-    
-    // async function getlist(){
-    //     try{
-    //         const response=await axios.get("https://reqres.in/api/users")
-    //         setUser(response.data.data)
-    //         console.log(response.data.data);
-    //     }
-    //     catch(err){
-    //         console.log(err);
-    //     }
-    // }
 
     return(
         <div>
             <span>Blue Whales</span>
-            <button className="btn" onClick={getlist}>Get User List</button>
+            <button onClick={getUsers} className="btn">Get User List</button>
             <table>
                 <thead>
                     <tr>
@@ -36,8 +25,8 @@ const UserList=()=>{
                 </thead>
                 <tbody>
                     {
-                        user.length>0 ? (
-                            user.map((user)=>{
+                        users.length>0 ? (
+                            users.map((user)=>{
                                 <tr key={user.id}>
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>
